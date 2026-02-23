@@ -1,0 +1,21 @@
+# argocd/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-microservice
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/company/k8s-manifests.git
+    targetRevision: HEAD
+    path: apps/my-microservice
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
