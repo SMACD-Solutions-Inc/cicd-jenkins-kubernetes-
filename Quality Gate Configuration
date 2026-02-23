@@ -1,0 +1,14 @@
+# sonar-project.properties
+
+sonar.projectKey=my-microservice
+sonar.projectName=My Microservice
+sonar.sources=src/main
+sonar.tests=src/test
+sonar.java.binaries=target/classes
+
+# Quality Gate Conditions
+sonar.qualitygate.wait=true
+sonar.coverage.threshold=80
+sonar.bugs.threshold=0
+sonar.vulnerabilities.threshold=0
+sonar.code_smells.threshold=10
