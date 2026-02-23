@@ -12,3 +12,12 @@ sonar.coverage.threshold=80
 sonar.bugs.threshold=0
 sonar.vulnerabilities.threshold=0
 sonar.code_smells.threshold=10
+
+# Custom Quality Gate Rules:
+
+#    Code Coverage: ≥ 80%
+#   Bugs: 0
+#   Vulnerabilities: 0
+#   Code Smells: ≤ 10
+#   Security Hotspots: Reviewed
+#   Duplicated Lines: ≤ 3%
