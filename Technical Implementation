@@ -1,0 +1,48 @@
+
+## 🔧 Technical Implementation
+
+### **1. Jenkins Setup**
+
+**Jenkins Plugins Used:**
+- Git Plugin
+- Docker Pipeline
+- Kubernetes Plugin
+- SonarQube Scanner
+- Pipeline Utility Steps
+- Blue Ocean (UI)
+- Slack Notification
+- Credentials Binding
+
+**Jenkins Configuration:**
+```groovy
+// Shared library for reusable pipeline code
+@Library('jenkins-shared-library') _
+
+// Global tools configuration
+tools {
+    maven 'Maven-3.9'
+    jdk 'JDK-17'
+}
+
+// Kubernetes pod template for dynamic agents
+kubernetes {
+    cloud 'eks-cluster'
+    namespace 'jenkins'
+    yaml '''
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: docker
+    image: docker:latest
+    command: ['cat']
+    tty: true
+    volumeMounts:
+    - name: docker-sock
+      mountPath: /var/run/docker.sock
+  volumes:
+  - name: docker-sock
+    hostPath:
+      path: /var/run/docker.sock
+    '''
+}
